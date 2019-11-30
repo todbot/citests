@@ -3,7 +3,7 @@ task:
   windows_container:
     image: cirrusci/windowsservercore:cmake
     os_version: 2019
-  test_script: echo "Hello World from Windows"
+  hello_script: echo "Hello World from Windows"
 #  setup_script:
   build_script:
     - set PATH=C:\tools\msys64\usr\bin;c:\tools\msys64\mingw64\bin;%PATH%;
@@ -13,6 +13,9 @@ task:
 
   test_script:
     - testme.exe
+
+
+#### no no no no no
 
 #    - which gcc
     #- pacman -S --noconfirm base-devel make git zip unzip
