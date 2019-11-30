@@ -6,8 +6,8 @@ task:
   test_script: echo "Hello World from Windows"
   setup_script:
     - set PATH=C:\tools\msys64\usr\bin\;c:\tools\msys64\mingw64\bin;%PATH%;
-    - pacman -S base-devel make git zip unzip
-    - pacman -S mingw-w64-x86_64-toolchain
+    - pacman -S --confirm base-devel make git zip unzip
+    - pacman -S --confirm mingw-w64-x86_64-toolchain
   #  - choco install mingw
     - dir c:\
     - dir c:\tools
