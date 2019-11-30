@@ -7,7 +7,6 @@ task:
   setup_script:
     - dir c:\tools
     - dir c:\tools\msys64
-    - dir c:\tools\mingw64\
-    - dir c:\tools\mingw64\bin
-    - C:\tools\msys64\usr\bin\bash -lc 'cd "%cd%"; echo $PWD; make CC=gcc'
+    - dir c:\tools\msys64\mingw64\
+    - dir c:\tools\msys64\mingw64\bin
     - C:\tools\msys64\usr\bin\bash -lc 'cd "%cd%"; echo $PWD; make CC=gcc'
