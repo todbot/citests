@@ -5,9 +5,11 @@ task:
     os_version: 2019
   test_script: echo "Hello World from Windows"
   setup_script:
-    - choco install mingw
+  #  - choco install mingw
     - dir c:\tools
     - dir c:\tools\msys64
+    - dir c:\tools\clang64
+    - dir c:\tools\clang64\bin
     - dir c:\tools\msys64\mingw64\
     - dir c:\tools\msys64\mingw64\bin
     - C:\tools\msys64\usr\bin\bash -lc 'cd "%cd%"; echo $PWD; make CC=gcc'
