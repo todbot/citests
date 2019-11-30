@@ -5,6 +5,7 @@ task:
     os_version: 2019
   test_script: echo "Hello World from Windows"
   setup_script:
+    - choco install mingw
     - dir c:\tools
     - dir c:\tools\msys64
     - dir c:\tools\msys64\mingw64\
