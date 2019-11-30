@@ -9,6 +9,6 @@
 
 int main(int argc, char *argv[])
 {
-  printf("\n\nhello there\n\n");
+  printf("\n\nhello there " VERSION "\n\n");
 
 }
