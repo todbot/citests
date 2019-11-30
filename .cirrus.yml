@@ -8,6 +8,7 @@ task:
   #  - choco install mingw
     - dir c:\tools
     - dir c:\tools\msys64
+    - dir c:\tools\msys64\usr\bin
     - dir c:\tools\msys64\clang64
     - dir c:\tools\msys64\clang64\bin
     - dir c:\tools\msys64\mingw64\
