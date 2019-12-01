@@ -5,10 +5,10 @@ task:
     os_version: 2019
   hello_script: echo "Hello World from Windows"
   setup_script:
-    - set PATH=C:\tools\msys64\usr\bin;c:\tools\msys64\mingw64\bin;%PATH%;
     - git fetch --tags origin
     - git tag
   build_script:
+    - set PATH=C:\tools\msys64\usr\bin;c:\tools\msys64\mingw64\bin;%PATH%;
     - mingw32-make
   test_script:
     - testme.exe
