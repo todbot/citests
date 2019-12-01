@@ -37,7 +37,7 @@ task:
     - set PATH=C:\tools\msys64\usr\bin;c:\tools\msys64\mingw64\bin;%PATH%;
     - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
     - mingw32-make
-    - lib
+    - lib /?
   test_script:
     - testme.exe
   artifacts:
