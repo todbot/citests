@@ -1,18 +1,47 @@
 task:
+  name: linux
+  container:
+    image: ubuntu:latest
+  setup_script:
+    - apt-get update && apt-get install -y build-essential git make gcc pkg-config libudev-dev
+    - git fetch --tags origin
+  build_script:
+    - make
+  test_script:
+    - ./testme
+  artifacts:
+    path: testme
+
+task:
+  name: macosx
+  osx_instance:
+    image: mojave-xcode
+  setup_script:
+    - git fetch --tags origin
+  build_script:
+    - make
+  test_script:
+    - ./testme
+  artifacts:
+    path: testme
+
+task:
   name: windows
   windows_container:
     image: cirrusci/windowsservercore:cmake
     os_version: 2019
-  hello_script: echo "Hello World from Windows"
   setup_script:
     - git fetch --tags origin
-    - git tag
+#    - git tag
   build_script:
     - set PATH=C:\tools\msys64\usr\bin;c:\tools\msys64\mingw64\bin;%PATH%;
+    - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
     - mingw32-make
+    - lib
   test_script:
     - testme.exe
-
+  artifcact:
+    path: testme.exe
 
 #### no no no no no
 
