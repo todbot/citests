@@ -40,7 +40,7 @@ task:
     - lib
   test_script:
     - testme.exe
-  artifcact:
+  artifacts:
     path: testme.exe
 
 #### no no no no no
