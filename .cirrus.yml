@@ -28,7 +28,7 @@ task:
 task:
   name: windows
   windows_container:
-    image: cirrusci/windowsservercore:cmake
+    image: cirrusci/windowsservercore:2019
     os_version: 2019
   setup_script:
     - git fetch --tags origin
@@ -36,9 +36,12 @@ task:
   build_script:
     - echo %PATH%
     - set PATH=C:\tools\msys64\usr\bin;c:\tools\msys64\mingw64\bin;%PATH%;
+    - dir "C:\Program Files (x86)\Microsoft Visual Studio\"
+    - dir "C:\Program Files (x86)\Microsoft Visual Studio\2017"
+    - dir "C:\Program Files (x86)\Microsoft Visual Studio\2019"
     - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
     - mingw32-make
-#    - lib /?
+    - lib /?
   test_script:
     - testme.exe
   artifacts:
