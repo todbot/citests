@@ -30,14 +30,21 @@ task:
   windows_container:
     image: cirrusci/windowsservercore:cmake
     os_version: 2019
+
+  install_vsstudio_workloads_script: |
+    choco install visualstudio2017-workload-universal -y
+    choco install visualstudio2017-workload-webcrossplat -y
+    
   setup_script:
     - git fetch --tags origin
 #    - git tag
   build_script:
     - echo %PATH%
     - set PATH=C:\tools\msys64\usr\bin;c:\tools\msys64\mingw64\bin;%PATH%;
-    - dir /s /b C:\
-#    - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
+    - dir /s c:\tools
+    - dir s/ "C:\Program Files (x86)"
+    - dir s/ "C:\Program Files"
+    - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
     - mingw32-make
     - lib /?
   test_script:
