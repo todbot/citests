@@ -34,6 +34,7 @@ task:
     - git fetch --tags origin
 #    - git tag
   build_script:
+    - echo %PATH%
     - set PATH=C:\tools\msys64\usr\bin;c:\tools\msys64\mingw64\bin;%PATH%;
     - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
     - mingw32-make
