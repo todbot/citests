@@ -40,11 +40,11 @@ jobs:
         
       - name: look for vcvars
         continue-on-error: true
-        run: Get-ChildItem -Path "C:\Program Files (x86)" -Filter vcvars* | Select FullName
+        run: Get-ChildItem -Path "C:\Program Files (x86)" -Filter vcvars* -Recurse | Select FullName
         
       - name: look for lib.exe
         continue-on-error: true
-        run: Get-ChildItem -Path "C:\Program Files (x86)" -Filter lib.exe | Select FullName
+        run: Get-ChildItem -Path "C:\Program Files (x86)" -Filter lib.exe -Recurse | Select FullName
         
 #       - name: try vcvars
 #         continue-on-error: true
