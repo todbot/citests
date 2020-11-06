@@ -31,13 +31,9 @@ jobs:
         continue-on-error: true
         if: matrix.os == 'windows-latest'
         run: |
-          dir "$VS140COMNTOOLS../../VC/bin"
+          Invoke-CmdScript "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
           env
-          which gcc
-          which vcvars.bat
-          which lib
-          which bash
-          which make
+          
       - name: look at files (non-windows)
         continue-on-error: true
         if: matrix.os != 'windows-latest'
