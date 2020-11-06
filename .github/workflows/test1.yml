@@ -37,15 +37,15 @@ jobs:
       - name: look for make2
         continue-on-error: true
         run:  which mingw32-make
-      - name: try vcvars
-        continue-on-error: true
-        run: call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+#       - name: try vcvars
+#         continue-on-error: true
+#         run: dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
 
-      - name: look at files (windows)
+      - name: look for lib (windows)
         continue-on-error: true
         if: matrix.os == 'windows-latest'
         run: |
-          dir --Recurse "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build"
+          Get-ChildItem -Recurse "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build"
           env
           
       - name: look at files (non-windows)
