@@ -26,13 +26,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+#          "%VS140COMNTOOLS%../../VC/vcvarsall.bat"
       - name: look at files (windows)
         continue-on-error: true
         if: matrix.os == 'windows-latest'
         run: |
           dir "$VS140COMNTOOLS../../VC/bin"
           env
-#          "%VS140COMNTOOLS%../../VC/vcvarsall.bat"
           which gcc
           which vcvars.bat
           which lib
