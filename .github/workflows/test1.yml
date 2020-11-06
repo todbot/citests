@@ -27,11 +27,16 @@ jobs:
       - uses: actions/checkout@v2
 
 #          "%VS140COMNTOOLS%../../VC/vcvarsall.bat"
+#         call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       - name: look at files (windows)
         continue-on-error: true
         if: matrix.os == 'windows-latest'
         run: |
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          dir "C:\Program Files (x86)\Microsoft Visual Studio"
+          echo "--------------"
+          dir "C:\Program Files (x86)\Microsoft Visual Studio\Enterprise"
+          echo "--------------"
+          dir /s "C:\Program Files (x86)\Microsoft Visual Studio\Enterprise\VC"
           env
           
       - name: look at files (non-windows)
