@@ -38,9 +38,13 @@ jobs:
         continue-on-error: true
         run:  which mingw32-make
         
+      - name: look for vcvars
+        continue-on-error: true
+        run: Get-ChildItem -Path "C:\Program Files (x86)" -Filter vcvars* 
+        
       - name: look for lib.exe
         continue-on-error: true
-        run: Get-ChildItem -Path "C:\Program Files (x86)\Microsoft Visual Studio\2019" -Filter lib.exe 
+        run: Get-ChildItem -Path "C:\Program Files (x86)" -Filter lib.exe 
         
 #       - name: try vcvars
 #         continue-on-error: true
