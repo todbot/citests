@@ -31,20 +31,20 @@ jobs:
 #         call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
 #              "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat"
 #          dir -Recurse -Path "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise" -Filter vcvarsallbat
-      - name: look for make1
-        continue-on-error: true
-        run:  which make
-      - name: look for make2
-        continue-on-error: true
-        run:  which mingw32-make
+#       - name: look for make1
+#         continue-on-error: true
+#         run:  which make
+#       - name: look for make2
+#         continue-on-error: true
+#         run:  which mingw32-make
         
-      - name: look for vcvars
-        continue-on-error: true
-        run: Get-ChildItem -Path "C:\Program Files (x86)" -Filter vcvars* -Recurse | Select FullName
+#       - name: look for vcvars
+#         continue-on-error: true
+#         run: Get-ChildItem -Path "C:\Program Files (x86)" -Filter vcvars* -Recurse | Select FullName
         
-      - name: look for lib.exe
-        continue-on-error: true
-        run: Get-ChildItem -Path "C:\Program Files (x86)" -Filter lib.exe -Recurse | Select FullName
+#       - name: look for lib.exe
+#         continue-on-error: true
+#         run: Get-ChildItem -Path "C:\Program Files (x86)" -Filter lib.exe -Recurse | Select FullName
         
 #       - name: try vcvars
 #         continue-on-error: true
@@ -56,7 +56,16 @@ jobs:
 #         run: |
 #           Get-ChildItem -Recurse "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build"
 #           env
-          
+  
+      # C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\lib.exe
+      - name: add to path (windows)
+        continue-on-error: true
+        run: $env:Path += ";C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin"
+        
+      - name: check lib
+        continue-on-error: true
+        run: lib /?
+        
       - name: look at files (non-windows)
         continue-on-error: true
         if: matrix.os != 'windows-latest'
