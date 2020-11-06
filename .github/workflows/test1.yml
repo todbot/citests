@@ -31,7 +31,7 @@ jobs:
         continue-on-error: true
         if: matrix.os == 'windows-latest'
         run: |
-          Invoke-CmdScript "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
           env
           
       - name: look at files (non-windows)
