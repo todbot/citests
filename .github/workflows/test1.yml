@@ -21,20 +21,24 @@ jobs:
     strategy:
       matrix:
 #        node-version: [10.x, 12.x, 14.x]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+#        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [windows-latest]
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
 #          "%VS140COMNTOOLS%../../VC/vcvarsall.bat"
 #         call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+#          dir -Recurse -Path "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise" -Filter vcvarsallbat
       - name: look at files (windows)
         continue-on-error: true
         if: matrix.os == 'windows-latest'
         run: |
-          dir "C:\Program Files (x86)\Microsoft Visual Studio"
+          dir "C:\mingw64\bin"
+          echo "====="
+          dir -Recurse "C:\tools"
+          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build"
           echo "--------------"
-          dir -Recurse -Path "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise" -Filter vcvarsallbat
           env
           
       - name: look at files (non-windows)
