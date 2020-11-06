@@ -30,13 +30,13 @@ jobs:
 #          "%VS140COMNTOOLS%../../VC/vcvarsall.bat"
 #         call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
 #          dir -Recurse -Path "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise" -Filter vcvarsallbat
+      - name: look at tools
+        run:  dir -Recurse "C:\tools"
+
       - name: look at files (windows)
         continue-on-error: true
         if: matrix.os == 'windows-latest'
         run: |
-          dir "C:\mingw64\bin"
-          echo "====="
-          dir -Recurse "C:\tools"
           dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build"
           echo "--------------"
           env
