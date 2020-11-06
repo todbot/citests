@@ -64,7 +64,9 @@ jobs:
         
       - name: check lib
         continue-on-error: true
-        run: lib /?
+        run: |
+        echo $env:Path
+        lib.exe /?
         
       - name: look at files (non-windows)
         continue-on-error: true
