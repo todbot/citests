@@ -31,7 +31,10 @@ jobs:
         continue-on-error: true
         if: matrix.os == 'windows-latest'
         run: |
+          env
+          "%VS140COMNTOOLS%../../VC/vcvarsall.bat"
           which gcc
+          which vcvars.bat
           which lib
           which bash
           which make
