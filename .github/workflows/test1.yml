@@ -62,10 +62,12 @@ jobs:
         continue-on-error: true
         run: echo "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin" >> $GITHUB_PATH
         
+      - name: print env
+        run: env
+        
       - name: check lib
         continue-on-error: true
         run: |
-          Get-ChildItem Env:Path -split ";"
           lib.exe /?
         
       - name: look at files (non-windows)
