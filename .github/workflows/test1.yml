@@ -34,9 +34,9 @@ jobs:
         run: |
           dir "C:\Program Files (x86)\Microsoft Visual Studio"
           echo "--------------"
-          dir "C:\Program Files (x86)\Microsoft Visual Studio\Enterprise"
+          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019"
           echo "--------------"
-          dir /s "C:\Program Files (x86)\Microsoft Visual Studio\Enterprise\VC"
+          dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
           env
           
       - name: look at files (non-windows)
