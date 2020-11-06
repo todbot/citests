@@ -10,7 +10,6 @@ on:
   pull_request:
     branches: [ master ]
 
-
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -31,8 +30,9 @@ jobs:
         continue-on-error: true
         if: matrix.os == 'windows-latest'
         run: |
+          dir "$VS140COMNTOOLS../../VC/bin"
           env
-          "%VS140COMNTOOLS%../../VC/vcvarsall.bat"
+#          "%VS140COMNTOOLS%../../VC/vcvarsall.bat"
           which gcc
           which vcvars.bat
           which lib
