@@ -60,13 +60,13 @@ jobs:
       # C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\lib.exe
       - name: add to path (windows)
         continue-on-error: true
-        run: $env:Path += ";C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin"
+        run: echo "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin" >> $GITHUB_PATH
         
       - name: check lib
         continue-on-error: true
         run: |
-        echo $env:Path
-        lib.exe /?
+          Get-ChildItem Env:Path -split ";"
+          lib.exe /?
         
       - name: look at files (non-windows)
         continue-on-error: true
