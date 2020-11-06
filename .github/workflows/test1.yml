@@ -36,7 +36,7 @@ jobs:
           echo "--------------"
           dir "C:\Program Files (x86)\Microsoft Visual Studio\2019"
           echo "--------------"
-          dir /s "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+          Get-ChildItem -Recurse "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
           env
           
       - name: look at files (non-windows)
