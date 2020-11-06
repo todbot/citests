@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: CItest1
 
 
 # Controls when the action will run. Triggers the workflow on push or pull request
@@ -19,6 +19,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     runs-on:  ${{ matrix.os }}
+    continue-on-error: true
     strategy:
       matrix:
 #        node-version: [10.x, 12.x, 14.x]
@@ -26,6 +27,18 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
+      - name: look at files
+        run: |
+          ls -al
+          which make
+          which gcc
+          which lib
+          
+      - name: make with makefile
+        continue-on-error: true
+        run: make
+
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
