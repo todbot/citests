@@ -23,6 +23,8 @@ jobs:
       run: |
         sudo apt update 
         sudo apt install pkg-config libudev-dev libusb-1.0-0-dev
+        export CC=clang-9
+        export CXX=clang++-9 
   
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -36,9 +38,10 @@ jobs:
         npm install --build-from-source
         npm test
         npm run prebuild
+        env 
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
       with:
         name: prebuild
-        path: node-hid/prebuilds
+        path: node-hid/prebuilds/*tar.gz
