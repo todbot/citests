@@ -37,8 +37,8 @@ jobs:
         npm test
         npm run prebuild
 
-    - name: Archive production artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: prebuild
-          path: node-hid/prebuilds
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.2
+      with:
+        name: prebuild
+        path: node-hid/prebuilds
