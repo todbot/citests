@@ -1,0 +1,44 @@
+
+name: linux
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: setup prerequisites (linux)
+      run: |
+        sudo apt update 
+        sudo apt install pkg-config libudev-dev libusb-1.0-0-dev
+  
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - run: |
+        git clone https://github.com/node-hid/node-hid
+        cd node-hid
+        npm run prepublishOnly
+        npm install --build-from-source
+        npm test
+        npm run prebuild
+
+    - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: prebuild
+          path: node-hid/prebuilds
