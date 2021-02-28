@@ -20,9 +20,9 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
+        os: [windows-latest]
 #        node-version: [10.x, 12.x, 14.x]
 #        os: [ubuntu-latest, windows-latest, macos-latest]
-        os: [windows-latest]
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
@@ -71,15 +71,26 @@ jobs:
         run: |
           lib.exe /?
         
-      - name: look at files (non-windows)
+      - name: try bash on windows
         continue-on-error: true
-        if: matrix.os != 'windows-latest'
+        shell: bash
         run: |
           which make
           which gcc
-          which bash        
+          which bash
+          which lib
           
-      - name: make with makefile
+      - name: try bash on windows 2
+        continue-on-error: true
+        shell: bash
+        run: env
+          
+      - name: make with makefile (bash)
+        continue-on-error: true
+        shell: bash
+        run: make
+
+      - name: make with makefile (powershell)
         continue-on-error: true
         run: make
 
