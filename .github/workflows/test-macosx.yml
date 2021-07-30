@@ -41,7 +41,9 @@ jobs:
 
       - name: run app
         shell: bash
-        run: ./testme
+        run: |
+          file ./testme
+          ./testme
         
         
 # Remove for now, weird error "http2.c:382:40: error: variable has incomplete type 'const nghttp2_session_callbacks' (aka "
