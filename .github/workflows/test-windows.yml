@@ -43,7 +43,7 @@ jobs:
       - name: search for lib
         run: |
           dir c:
-          dir `C:\msys64\usr\bin`
+          dir 'C:\msys64\usr\bin'
           dir 'C:\Program Files (x86)\'
           dir 'C:\Program Files (x86)\Microsoft Visual Studio\'        
 
