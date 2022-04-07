@@ -28,6 +28,21 @@ jobs:
         shell: bash
         run: env
 
+      - name: Set up Visual Studio shell
+        uses: egor-tensin/vs-shell@v2
+        with:
+          arch: x64
+            
+      - name: print env
+        shell: bash
+        run: env
+
+      - name: search for lib
+        run: |
+          dir c:
+          dir 'C:\Program Files (x86)\'
+          dir 'C:\Program Files (x86)\Microsoft Visual Studio\'        
+
       - name: checkout blink1-tool
         run: git clone https://github.com/todbot/blink1-tool
         
