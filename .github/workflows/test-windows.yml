@@ -91,7 +91,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: blink1-tool-artifact
-          path: blink1-tool/blink1control-tool*.zip
+          path: blink1-tool/blink1*.zip
           retention-days: 5
         
     
