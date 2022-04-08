@@ -35,13 +35,6 @@ jobs:
         shell: bash
         run: env
 
-      # - name: search for lib
-      #   run: |
-      #     dir c:
-      #     dir 'C:\msys64\usr\bin'
-      #     dir 'C:\Program Files (x86)\'
-      #     dir 'C:\Program Files (x86)\Microsoft Visual Studio\'
-
       - name: Checkout blink1-tool
         #if: steps.cache.outputs.cache-hit != 'true'
         run: git clone https://github.com/todbot/blink1-tool
