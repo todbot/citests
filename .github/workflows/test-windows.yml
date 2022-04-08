@@ -55,7 +55,7 @@ jobs:
         run: |
           cd blink1-tool && make package 
 
-       - name: 'Upload blink1-tool artifact'
+      - name: 'Upload blink1-tool artifact'
         uses: actions/upload-artifact@v3
         with:
           name: blink1-tool-artifact
