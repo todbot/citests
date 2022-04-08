@@ -51,8 +51,8 @@ jobs:
       - name: 'Upload blink1-tool artifact'
         uses: actions/upload-artifact@v3
         with:
-          name: blink1-tool-artifact
-          path: blink1-tool/{blink1-tool,blink1-lib}*.zip 
+          name: blink1-tool-artifacts
+          path: blink1-tool/blink1*.zip
           retention-days: 5
 
       - name: Compile blink1-tiny-server
@@ -67,8 +67,8 @@ jobs:
       - name: 'Upload blink1-tiny-server artifact'
         uses: actions/upload-artifact@v3
         with:
-          name: blink1-tiny-server-artifact
-          path: blink1-tool/blink1-*.zip
+          name: blink1-tiny-server-artifacts
+          path: blink1-tool/blink1*.zip
           retention-days: 5
 
       - name: Compile blink1control-tool
@@ -83,7 +83,7 @@ jobs:
       - name: 'Upload blink1control-tool artifact'
         uses: actions/upload-artifact@v3
         with:
-          name: blink1-tool-artifact
+          name: blink1-tool-all-artifacts
           path: blink1-tool/blink1*.zip
           retention-days: 5
         
