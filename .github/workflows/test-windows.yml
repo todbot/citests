@@ -19,7 +19,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2    
+      - uses: actions/checkout@v2
 
       - name: Setup prerequisites (windows)
         run: |
@@ -46,7 +46,6 @@ jobs:
         #if: steps.cache.outputs.cache-hit != 'true'
         run: git clone https://github.com/todbot/blink1-tool
 
-############
       - name: Compile blink1-tool
         shell: bash
         run: cd blink1-tool && make
@@ -63,7 +62,6 @@ jobs:
           path: blink1-tool/{blink1-tool,blink1-lib}*.zip 
           retention-days: 5
 
-#############
       - name: Compile blink1-tiny-server
         shell: bash
         run: cd blink1-tool && make blink1-tiny-server
@@ -80,7 +78,6 @@ jobs:
           path: blink1-tool/blink1-tiny-server*.zip
           retention-days: 5
 
-#############
       - name: Compile blink1control-tool
         shell: bash
         run: cd blink1-tool && make blink1control-tool
