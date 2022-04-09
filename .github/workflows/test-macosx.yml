@@ -33,7 +33,7 @@ jobs:
       - name: update xcode w/ arm
         shell: bash
         run: |
-          xcode-select --reset
+          sudo xcode-select --reset
           clang -v
           #sudo rm -Rf /Library/Developer/CommandLineTools/SDKs/*
           #sudo xcode-select -s "/Applications/Xcode_13.2.app"
