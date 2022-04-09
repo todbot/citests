@@ -60,7 +60,7 @@ jobs:
       - name: Compile blink1control-tool by hand
         shell: bash
         run: |
-          cd blink1control-tool
+          cd blink1-tool/blink1control-tool
           ls -al
           make curl-setup
           ls -al
