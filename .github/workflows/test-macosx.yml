@@ -2,23 +2,18 @@
 
 name: macos
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
     runs-on: macos-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks-out your repository under $GITHUB_WORKSPACE
       - uses: actions/checkout@v2
 
       - name: check xcode version
@@ -29,12 +24,12 @@ jobs:
         shell: bash
         run: ls -al /Applications
 
-      - name: update to xcode w/ arm
-        shell: bash
-        run: |
-          sudo rm -Rf /Library/Developer/CommandLineTools/SDKs/*
-          sudo xcode-select -s "/Applications/Xcode_12.4.app"
-          
+      # - name: update to xcode w/ arm
+      #   shell: bash
+      #   run: |
+      #     sudo rm -Rf /Library/Developer/CommandLineTools/SDKs/*
+      #     sudo xcode-select -s "/Applications/Xcode_12.4.app"
+
       - name: compile
         shell: bash
         run: make
@@ -44,12 +39,15 @@ jobs:
         run: |
           file ./testme
           ./testme
-        
-        
-# Remove for now, weird error "http2.c:382:40: error: variable has incomplete type 'const nghttp2_session_callbacks' (aka "
-#      - name: compile blink1control-tool
-#        shell: bash
-#        run: make blink1control-tool
 
-        
-        
+      - name: Checkout blink1-tool
+        #if: steps.cache.outputs.cache-hit != 'true'
+        run: git clone https://github.com/todbot/blink1-tool
+
+      - name: Compile blink1-tool
+        shell: bash
+        run: cd blink1-tool && make
+
+      - name: Compile blink1control-tool
+        shell: bash
+        run: cd blink1-tool && make blink1control-tool
