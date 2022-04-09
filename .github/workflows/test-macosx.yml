@@ -24,12 +24,16 @@ jobs:
         shell: bash
         run: ls -al /Applications
 
-      - name: update xcode w/ arm
+      - name: list homeberw
         shell: bash
-        run: |
-          sudo rm -Rf /Library/Developer/CommandLineTools/SDKs/*
-          sudo xcode-select -s "/Applications/Xcode_13.2.app"
-      #     sudo xcode-select -s "/Applications/Xcode_12.4.app"
+        run: brew list
+
+      # - name: update xcode w/ arm
+      #   shell: bash
+      #   run: |
+      #     sudo rm -Rf /Library/Developer/CommandLineTools/SDKs/*
+      #     sudo xcode-select -s "/Applications/Xcode_13.2.app"
+      # #     sudo xcode-select -s "/Applications/Xcode_12.4.app"
 
       - name: compile
         shell: bash
@@ -49,6 +53,16 @@ jobs:
         shell: bash
         run: cd blink1-tool && make
 
-      - name: Compile blink1control-tool
+      # - name: Compile blink1control-tool
+      #   shell: bash
+      #   run: cd blink1-tool && make blink1control-tool
+
+      - name: Compile blink1control-tool by hand
         shell: bash
-        run: cd blink1-tool && make blink1control-tool
+        run: |
+          cd blink1control-tool
+          ls -al
+          make curl-setup
+          ls -al
+          ls -al curl-macosx/*
+          make
