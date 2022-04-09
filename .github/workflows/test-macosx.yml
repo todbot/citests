@@ -32,7 +32,8 @@ jobs:
         run: |
           brew list
           brew install coreutils
-
+          # echo "/usr/local/opt/coreutils/libexec/gnubin" >> $GITHUB_PATH
+          
       # - name: update xcode w/ arm
       #   shell: bash
       #   run: |
