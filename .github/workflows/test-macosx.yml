@@ -28,7 +28,7 @@ jobs:
         shell: bash
         run: |
           sudo rm -Rf /Library/Developer/CommandLineTools/SDKs/*
-          sudo xcode-select -s "/Applications/Xcode_13.3.app"
+          sudo xcode-select -s "/Applications/Xcode_13.2.app"
       #     sudo xcode-select -s "/Applications/Xcode_12.4.app"
 
       - name: compile
