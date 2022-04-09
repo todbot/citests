@@ -18,7 +18,9 @@ jobs:
 
       - name: check xcode version
         shell: bash
-        run: xcodebuild -version
+        run: |
+          xcodebuild -version
+          clang -v
 
       - name: ls Applications
         shell: bash
@@ -28,12 +30,14 @@ jobs:
         shell: bash
         run: brew list
 
-      # - name: update xcode w/ arm
-      #   shell: bash
-      #   run: |
-      #     sudo rm -Rf /Library/Developer/CommandLineTools/SDKs/*
-      #     sudo xcode-select -s "/Applications/Xcode_13.2.app"
-      # #     sudo xcode-select -s "/Applications/Xcode_12.4.app"
+      - name: update xcode w/ arm
+        shell: bash
+        run: |
+          xcode-select --reset
+          clang -v
+          #sudo rm -Rf /Library/Developer/CommandLineTools/SDKs/*
+          #sudo xcode-select -s "/Applications/Xcode_13.2.app"
+      #     sudo xcode-select -s "/Applications/Xcode_12.4.app"
 
       - name: compile
         shell: bash
@@ -62,7 +66,8 @@ jobs:
         run: |
           cd blink1-tool/blink1control-tool
           ls -al
-          make curl-setup
+          #make curl-setup
+          cd curl-7.78.0 && CFLAGS="-arch x86_64 -arch arm64" ./configure --prefix="`pwd`/../curl-macosx" --disable-shared --disable-ldap --without-zlib --without-libssh2 --without-ssl --without-libidn2 --disable-crypto-auth --disable-manual --disable-verbose && make && make install
           ls -al
           ls -al curl-macosx/*
           make
