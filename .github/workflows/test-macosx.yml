@@ -76,6 +76,7 @@ jobs:
           #make curl-setup
           tar xzf curl-7.78.0.tar.gz
           cd curl-7.78.0 && CFLAGS="-arch x86_64 -arch arm64" ./configure --prefix="`pwd`/../curl-macosx" --disable-shared --disable-ldap --without-zlib --without-brotli --without-zstd --without-libssh2 --without-ssl --disable-crypto-auth --disable-manual --disable-verbose && make && make install
+          cd ..
           ls -al
           ls -al curl-macosx/*
           make
