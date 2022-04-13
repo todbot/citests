@@ -30,10 +30,13 @@ jobs:
       - name: list homeberw
         shell: bash
         run: |
+          brew update
+          brew upgrade
           brew list
           brew install coreutils
+
           # echo "/usr/local/opt/coreutils/libexec/gnubin" >> $GITHUB_PATH
-          
+
       # - name: update xcode w/ arm
       #   shell: bash
       #   run: |
@@ -61,18 +64,18 @@ jobs:
         shell: bash
         run: cd blink1-tool && make
 
-      # - name: Compile blink1control-tool
-      #   shell: bash
-      #   run: cd blink1-tool && make blink1control-tool
-
-      - name: Compile blink1control-tool by hand
+      - name: Compile blink1control-tool
         shell: bash
-        run: |
-          cd blink1-tool/blink1control-tool
-          ls -al
-          #make curl-setup
-          tar xzf curl-7.78.0.tar.gz
-          cd curl-7.78.0 && CFLAGS="-arch x86_64 -arch arm64" ./configure --prefix="`pwd`/../curl-macosx" --disable-shared --disable-ldap --without-zlib --without-libssh2 --without-ssl --disable-crypto-auth --disable-manual --disable-verbose && make && make install
-          ls -al
-          ls -al curl-macosx/*
-          make
+        run: cd blink1-tool && make blink1control-tool
+
+      # - name: Compile blink1control-tool by hand
+      #   shell: bash
+      #   run: |
+      #     cd blink1-tool/blink1control-tool
+      #     ls -al
+      #     #make curl-setup
+      #     tar xzf curl-7.78.0.tar.gz
+      #     cd curl-7.78.0 && CFLAGS="-arch x86_64 -arch arm64" ./configure --prefix="`pwd`/../curl-macosx" --disable-shared --disable-ldap --without-zlib --without-libssh2 --without-ssl --disable-crypto-auth --disable-manual --disable-verbose && make && make install
+      #     ls -al
+      #     ls -al curl-macosx/*
+      #     make
