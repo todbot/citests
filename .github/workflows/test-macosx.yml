@@ -66,6 +66,7 @@ jobs:
       #  shell: bash
       #  run: cd blink1-tool && make blink1control-tool
 
+      # from https://localazy.com/blog/how-to-automatically-sign-macos-apps-using-github-actions
       - name: Codesign executable
         env:
           MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
@@ -79,6 +80,17 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k poopinfresh build.keychain
           security find-identity -v
           /usr/bin/codesign --force -s 0B9C89313E2EDCCFB635D471A53B35A9C33B05BE ./blink1-tool/blink1-tool  -v
+
+      - name: Package blink1-tool
+        shell: bash
+        run: cd blink1-tool && make package
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: blink1-tool-macos-all-artifacts
+          path: blink1-tool/blink1*.zip
+
 
         # - name: Compile blink1control-tool by hand
         # shell: bash
