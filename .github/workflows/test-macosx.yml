@@ -68,15 +68,29 @@ jobs:
       #  shell: bash
       #  run: cd blink1-tool && make blink1control-tool
 
-      - name: Compile blink1control-tool by hand
-        shell: bash
+      - name: Codesign executable
+        env:
+          MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
+          MACOS_CERTIFICATE_PWD: ${{ secrets.MACOS_CERTIFICATE_PWD }}
         run: |
-          cd blink1-tool/blink1control-tool
-          ls -al
-          #make curl-setup
-          tar xzf curl-7.78.0.tar.gz
-          cd curl-7.78.0 && CFLAGS="-arch x86_64 -arch arm64" ./configure --prefix="`pwd`/../curl-macosx" --disable-shared --disable-ldap --without-zlib --without-brotli --without-zstd --without-libssh2 --without-ssl --disable-crypto-auth --disable-manual --disable-verbose && make && make install
-          cd ..
-          ls -al
-          ls -al curl-macosx/*
-          make
+          echo $MACOS_CERTIFICATE | base64 —decode > certificate.p12
+          security create-keychain -p poopinfresh build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p poopinfresh build.keychain
+          security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k poopinfresh build.keychain
+          security find-identity -v
+          /usr/bin/codesign --force -s 4AB2D21662320F906EE750697C08186E8F9C2072 ./blink1-tool/blink1-tool  -v
+
+        # - name: Compile blink1control-tool by hand
+        # shell: bash
+        # run: |
+        #   cd blink1-tool/blink1control-tool
+        #   ls -al
+        #   #make curl-setup
+        #   tar xzf curl-7.78.0.tar.gz
+        #   cd curl-7.78.0 && CFLAGS="-arch x86_64 -arch arm64" ./configure --prefix="`pwd`/../curl-macosx" --disable-shared --disable-ftp --disable-file --disable-ldap --disable-ldaps --disable-rtsp --disable-telnet --disable-tftp --disable-pop3 --disable-imap --disable-smb --disable-smtp --disable-gopher --disable-mqtt --disable-manual --without-zlib --without-brotli --without-zstd --without-librtmp --without-libssh2 --without-ssl --without-quiche --without-zsh-functions-dir --without-fish-functions-dir --disable-crypto-auth --disable-verbose && make && make install
+        #   cd ..
+        #   ls -al
+        #   ls -al curl-macosx/*
+        #   make
