@@ -23,20 +23,18 @@ jobs:
           clang -v
           env
 
-      - name: ls Applications
-        shell: bash
-        run: ls -al /Applications
-
-      - name: list homeberw
-        shell: bash
-        run: |
-          brew list
+      # - name: ls Applications
+      #   shell: bash
+      #   run: ls -al /Applications
+      # - name: list homeberw
+      #   shell: bash
+      #   run: |
+      #     brew list
           #          brew update
           #          brew upgrade
           #          brew install coreutils
 
           # echo "/usr/local/opt/coreutils/libexec/gnubin" >> $GITHUB_PATH
-
       # - name: update xcode w/ arm
       #   shell: bash
       #   run: |
@@ -80,7 +78,7 @@ jobs:
           security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k poopinfresh build.keychain
           security find-identity -v
-          /usr/bin/codesign --force -s 4AB2D21662320F906EE750697C08186E8F9C2072 ./blink1-tool/blink1-tool  -v
+          /usr/bin/codesign --force -s 0B9C89313E2EDCCFB635D471A53B35A9C33B05BE ./blink1-tool/blink1-tool  -v
 
         # - name: Compile blink1control-tool by hand
         # shell: bash
